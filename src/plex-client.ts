@@ -3,6 +3,7 @@ import {parseStringPromise} from 'xml2js';
 import {
 	RequestOptions,
 	BaseCapabilitiesResponse,
+	LibraryContentsResponse,
 	LibrarySectionResponse,
 	METHOD,
 	PlexClientOptions
@@ -23,6 +24,14 @@ export class PlexClient {
 			url: `${this.getServerUrl()}`
 		};
 		const xml: BaseCapabilitiesResponse = await this._request(options);
+		return xml;
+	}
+
+	async getLibraryContents(libraryId: string): Promise<LibraryContentsResponse> {
+		const options: RequestOptions = {
+			url: `${this.getServerUrl()}/library/sections/${libraryId}/all`
+		};
+		const xml: LibraryContentsResponse = await this._request(options);
 		return xml;
 	}
 

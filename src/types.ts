@@ -2,6 +2,28 @@ export interface BaseCapabilitiesResponse {
 
 }
 
+export interface LibraryContentsResponse {
+	MediaContainer: {
+		Video: {
+			$: {
+				contentRating: string,
+				originallyAvailableAt: string,
+				rating: string,
+				summary: string,
+				tagline: string,
+				title: string,
+				type: string,
+				year: string
+			},
+			Role: {
+				$: {
+					tag: string
+				}
+			}[]
+		}[]
+	}
+}
+
 export interface LibrarySectionResponse {
 	MediaContainer: {
 		$: {
