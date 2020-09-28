@@ -1,0 +1,43 @@
+{
+	"name": "plex-ts",
+	"version": "0.0.1",
+	"description": "A TypeScript module for communicating with a Plex server.",
+	"main": "dist/app.js",
+	"types": "dist/app.d.ts",
+	"author": "Alex Aritan",
+	"license": "MIT",
+	"scripts": {
+		"build": "rm -rf dist && tsc -p .",
+		"lint": "eslint . --ext ts",
+		"test": "jest"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "yarn run lint",
+			"pre-push": "yarn run build && yarn run test"
+		}
+	},
+	"jest": {
+		"collectCoverage": true,
+		"coverageReporters": [
+			"text"
+		],
+		"testMatch": [
+			"<rootDir>/dist/**/*.test.js"
+		],
+		"verbose": true
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^4.2.0",
+		"@typescript-eslint/parser": "^4.2.0",
+		"eslint": "^7.10.0",
+		"husky": "^4.3.0",
+		"jest": "^26.4.2"
+	},
+	"dependencies": {
+		"@types/node-fetch": "^2.5.7",
+		"@types/xml2js": "^0.4.5",
+		"node-fetch": "^2.6.1",
+		"xml2js": "^0.4.23"
+	}
+}

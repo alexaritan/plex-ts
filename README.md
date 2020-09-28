@@ -1,0 +1,1 @@
+This is a TypeScript supported library for interacting with the Plex API.
