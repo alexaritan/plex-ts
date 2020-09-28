@@ -1,44 +1,66 @@
-export interface BaseCapabilitiesResponse {
-
+export interface CreateClientInput {
+	httpClient?(url: string, options: HttpClientOptions): Promise<any>;
+	serverUrl: string;
+	token: string;
 }
 
-export interface LibrarySectionResponse {
-	MediaContainer: {
-		$: {
-			size: string,
-			title1: string
-		},
-		Directory: {
-			$: {
-				key: string,
-				title: string,
-				type: string,
-				updatedAt: string,
-				uuid: string
-			},
-			Location: {
-				$: {
-					id: string,
-					path: string
-				}
-			}[]
-		}[]
-	}
+interface HttpClientOptions {
+	method: string;
+	body?: string;
+	headers?: {
+		'Content-Type': string;
+	};
 }
 
-export interface PlexClientOptions {
-	serverIp: string,
-	serverPort?: number
+export interface PlexClient {
+	get(resourceUrl: string): Promise<any>;
+	getLibraries(): Promise<Library[]>;
+	getVideoLibraryContents(key: number | string): Promise<Movie[]>;
 }
 
-export interface RequestOptions {
-	body?: string,
-	method?: METHOD,
-	url: string
+export interface Library {
+	allowSync: string;
+	art: string;
+	composite: string;
+	filters: string;
+	refreshing: string;
+	thumb: string;
+	key: string;
+	type: string;
+	title: string;
+	agent: string;
+	scanner: string;
+	language: string;
+	uuid: string;
+	updatedAt: string;
+	createdAt: string;
+	scannedAt: string;
+	content: string;
+	directory: string;
+	contentChangedAt: string;
+	hidden: string;
 }
 
-export enum METHOD {
-	GET = 'GET',
-	POST = 'POST',
-	PUT = 'PUT'
+export interface Movie {
+	ratingKey: string;
+	key: string;
+	guid: string;
+	studio: string;
+	type: string;
+	title: string;
+	contentRating: string;
+	summary: string;
+	rating: string;
+	audienceRating: string;
+	year: string;
+	tagline: string;
+	thumb: string;
+	art: string;
+	duration: string;
+	originallyAvailableAt: string;
+	addedAt: string;
+	updatedAt: string;
+	audienceRatingImage: string;
+	primaryExtraKey: string;
+	ratingImage: string;
 }

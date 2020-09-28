@@ -1,5 +1,4 @@
-import {PlexClient} from './plex-client';
-import * as options from './config/config.json';
+import { createClient } from './client';
+import { PlexClient } from './types';
 
-const client = new PlexClient(options);
-client.getBaseServerCapabilities()
+export { createClient, PlexClient };
