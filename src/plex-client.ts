@@ -5,7 +5,8 @@ import {
 	BaseCapabilitiesResponse,
 	LibrarySectionResponse,
 	METHOD,
-	PlexClientOptions} from './types';
+	PlexClientOptions
+} from './types';
 
 export class PlexClient {
 
@@ -22,7 +23,6 @@ export class PlexClient {
 			url: `${this.getServerUrl()}`
 		};
 		const xml: BaseCapabilitiesResponse = await this._request(options);
-		console.log(xml);
 		return xml;
 	}
 
@@ -39,7 +39,8 @@ export class PlexClient {
 		return this.#serverPort === undefined ? url : `${url}:${this.#serverPort}`
 	}
 
-	async _request(options: RequestOptions): Promise<any> {
+	private async _request(options: RequestOptions): Promise<any> {
+		//Set default method to GET if not provided.
 		if(!options.method) options.method = METHOD.GET;
 		const rawxml = await fetch(options.url, options).then(res => res.text());
 		const xml = await parseStringPromise(rawxml);
